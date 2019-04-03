@@ -8,8 +8,8 @@
 
 import UIKit
 import CoreLocation
-//import Alamofire
-//import SwiftyJSON
+import Alamofire
+import SwiftyJSON
 
 class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -55,6 +55,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                 
                 let weatherJSON : JSON = JSON(response.result.value!)
                 
+                print(weatherJSON)
                 
             }
             else{
@@ -98,8 +99,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         let location = locations[locations.count - 1]
         if location.horizontalAccuracy > 0 {
             locationManager.stopUpdatingLocation()
+            locationManager.delegate = nil
             
-            print("location = \(location.coordinate.longitude), latitude = \(location.coordinate.latitude)")
+            print("longitude = \(location.coordinate.longitude), latitude = \(location.coordinate.latitude)")
             
             let latitude = String(location.coordinate.latitude)
             let longitude = String(location.coordinate.longitude)
